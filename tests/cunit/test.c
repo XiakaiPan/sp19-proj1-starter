@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @version: 
+ * @Author: PanXiakai
+ * @Date: 2021-09-12 10:34:06
+ * @LastEditors: PanXiakai
+ * @LastEditTime: 2021-09-12 11:09:40
+ */
 #include <stddef.h>
 #include "../../string-helpers.h"
 #include <CUnit/Basic.h>
@@ -8,7 +16,8 @@
  * Opens the temporary file used by the tests.
  * Returns zero on success, non-zero otherwise.
  */
-int init_suite1(void) {
+int init_suite1(void)
+{
   return 0;
 }
 
@@ -16,39 +25,45 @@ int init_suite1(void) {
  * Closes the temporary file used by the tests.
  * Returns zero on success, non-zero otherwise.
  */
-int clean_suite1(void) {
+int clean_suite1(void)
+{
   return 0;
 }
 
 /* The test initialization function.
  * Opens the temporary file used by the test.
  */
-void init_test1(void) {
+void init_test1(void)
+{
   return;
 }
 
 /* The test cleanup function.
  * Closes the temporary file used by the test in particular.
  */
-void clean_test1(void) {
+void clean_test1(void)
+{
   return;
 }
 
 /* Simple test of is_digit().
  */
-void testISDIGIT_Integers(void) {
+void testISDIGIT_Integers(void)
+{
   CU_ASSERT_FALSE(is_digit(0));
   CU_ASSERT_FALSE(is_digit(9));
   CU_ASSERT_FALSE(is_digit(-1));
 }
 
-void testISDIGIT_Digits(void) {
+void testISDIGIT_Digits(void)
+{
   CU_ASSERT_TRUE(is_digit('1'));
   CU_ASSERT_TRUE(is_digit('0'));
   CU_ASSERT_TRUE(is_digit('9'));
 }
 
-void testISDIGIT_EscChars(void) {
+void testISDIGIT_EscChars(void)
+{
   CU_ASSERT_FALSE(is_digit('\0'));
   CU_ASSERT_FALSE(is_digit('\"'));
   CU_ASSERT_FALSE(is_digit('\n'));
@@ -58,21 +73,23 @@ void testISDIGIT_EscChars(void) {
  * Returns a CUE_SUCCESS on successful running, another
  * CUnit error code on failure.
  */
-int main() {
+int main()
+{
   CU_TestInfo isdigit_tests[] = {{"Test actual digits", testISDIGIT_Digits},
                                  {"Test esc chars", testISDIGIT_EscChars},
                                  {"Test numbers", testISDIGIT_Integers},
                                  CU_TEST_INFO_NULL};
 
   CU_SuiteInfo suites[] = {{"is_digit testing", init_suite1, clean_suite1,
-                           isdigit_tests},
+                            isdigit_tests},
                            CU_SUITE_INFO_NULL};
 
   /* initialize the CUnit test registry */
   if (CUE_SUCCESS != CU_initialize_registry())
     return CU_get_error();
 
-  if (CU_register_suites(suites)) {
+  if (CU_register_suites(suites))
+  {
     CU_cleanup_registry();
     return CU_get_error();
   }
